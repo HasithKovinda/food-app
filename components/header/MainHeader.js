@@ -1,8 +1,11 @@
+
 import Link from "next/link"
 import Logo from '@/assets/logo.png'
-import styles from './main-header.module.css'
+import styles from './MainHeader.module.css'
 import Image from "next/image"
 import MainHeaderBackground from "./MainHeaderBackground"
+import NavLink from "./NavLink"
+
 function MainHeader() {
   return (
    <>
@@ -15,10 +18,10 @@ function MainHeader() {
       <nav className={styles.nav}>
       <ul>
         <li>
-            <Link href='meals' >Browse Meals</Link>
+          <NavLink herf='/meals'>Browse Meals</NavLink>
         </li>
         <li>
-            <Link href='community' >Foodies Community</Link>
+           <NavLink herf='/community'>Foodies Community</NavLink>
         </li>
       </ul>
       </nav>
