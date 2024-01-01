@@ -2,9 +2,15 @@ import Link from "next/link"
 import styles from './page.module.css';
 import { getMeals } from "@/API/meals";
 import MealsGrid from "@/components/meals/MealsGrid";
+import { Suspense } from "react";
+
+async function Meals(){
+  const meals = await getMeals()
+  return <MealsGrid meals={meals} />
+
+}
 
 async function page() {
-  const meals = await getMeals()
   return (
     <>
      <header className={styles.header}>
@@ -19,9 +25,11 @@ async function page() {
           <Link href="/meals/share">Share Your Favorite Recipe</Link>
         </p>
       </header>
-      {meals &&  <main className={styles.main}>
-        <MealsGrid meals={meals} />
-      </main>}
+      <main className={styles.main}>
+        <Suspense fallback={<p className={styles.loading}>Fetching Meals....</p>}>
+          <Meals/>
+        </Suspense>
+      </main>
   </>
   )
 }
